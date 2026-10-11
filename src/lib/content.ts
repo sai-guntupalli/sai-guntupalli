@@ -59,7 +59,9 @@ export const certifications: Certification[] = [
   {
     name: "Certified Data Engineer Associate",
     issuer: "Databricks",
-    href: "https://www.databricks.com/learn/certification/data-engineer-associate",
+    // Accredible-hosted credential (viewer API is closed), so badge art
+    // stays the issuer mark instead of an earned-badge image.
+    href: "https://credentials.databricks.com/5baa7fc3-9464-418f-96c9-b88c1e663d01",
     badge: "/certifications/databricks.svg",
   },
 ];

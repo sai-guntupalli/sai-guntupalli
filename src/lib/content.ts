@@ -53,8 +53,8 @@ export const certifications: Certification[] = [
   {
     name: "Professional Data Engineer",
     issuer: "Google Cloud",
-    href: "https://cloud.google.com/learn/certification/data-engineer",
-    badge: "/certifications/googlecloud.svg",
+    href: "https://www.credly.com/badges/9928e911-e43b-46ba-b515-30bf690482cf",
+    badge: "/certifications/google-badge.png",
   },
   {
     name: "Certified Data Engineer Associate",

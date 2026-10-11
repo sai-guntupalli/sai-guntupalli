@@ -39,6 +39,12 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
+    name: "Claude Certified Architect - Foundations",
+    issuer: "Anthropic",
+    href: "https://www.credly.com/badges/a7f2d454-3420-4294-8284-c5e993620cc6",
+    badge: "/certifications/claude-architect.png",
+  },
+  {
     name: "Generative AI LLMs - Associate",
     issuer: "NVIDIA",
     href: "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/",

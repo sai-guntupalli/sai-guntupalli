@@ -17,7 +17,7 @@ export function Certifications() {
         </Reveal>
 
         <Reveal className="mt-8">
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {certifications.map((cert) => (
               <li
                 key={cert.name}
@@ -27,19 +27,19 @@ export function Certifications() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={assetPath(cert.badge)}
-                  alt={`${cert.issuer} logo`}
+                  alt={`${cert.issuer} certification badge`}
                   width={40}
                   height={40}
-                  className="h-9 w-9 shrink-0"
+                  className="h-9 w-9 shrink-0 object-contain"
                 />
                 <div className="min-w-0">
                   <a
                     href={cert.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="title-link inline-flex items-center gap-1 font-medium"
+                    className="title-link inline-flex items-start gap-1 font-medium"
                   >
-                    <span className="block truncate">{cert.name}</span>
+                    <span className="leading-snug">{cert.name}</span>
                     <ArrowUpRight size={15} aria-hidden />
                   </a>
                   <p className="text-sm text-soft">{cert.issuer}</p>

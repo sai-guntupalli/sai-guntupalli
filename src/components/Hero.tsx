@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { GithubLogo } from "@phosphor-icons/react/dist/ssr";
-import { site } from "@/lib/content";
+import { assetPath, site } from "@/lib/content";
 
 // next/image passes public-file srcs through unmodified under static export,
-// so the Pages basePath has to be applied here explicitly (no-op in dev).
-const imageBasePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+// so Pages basePath has to be applied before the src reaches the image.
+// assetPath() makes that a no-op in dev and normal builds.
 
 export function Hero() {
   return (
@@ -45,7 +45,7 @@ export function Hero() {
         <div className="hero-portrait relative mx-auto aspect-[4/5] w-full max-w-xs sm:max-w-sm lg:col-span-5 lg:max-w-none">
           <div className="portrait-backdrop absolute inset-x-0 bottom-0 h-[86%] rounded-2xl" />
           <Image
-            src={`${imageBasePath}/sai-portrait.png`}
+            src={assetPath("/sai-portrait.png")}
             alt="Portrait of Sai Guntupalli"
             fill
             priority

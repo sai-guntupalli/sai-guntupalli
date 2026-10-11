@@ -7,8 +7,7 @@ export const site = {
   github: "https://github.com/sai-guntupalli",
   linkedin: "https://www.linkedin.com/in/sai-sri-vatsava-guntupalli/",
   // Prefixed with basePath when exporting for GitHub Pages project hosting.
-  resume:
-    (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/sai-guntupalli-resume.pdf",
+  resume: assetPath("/sai-guntupalli-resume.pdf"),
   role: "Senior Data Engineer & Python Developer",
   shortBio:
     "Ten years building data pipelines across media and finance, now pairing Snowflake and AWS with agentic AI at Disney.",
@@ -24,6 +23,40 @@ export const site = {
   ],
   bio: "Senior Data Engineer and Python Developer with 10 years building scalable data pipelines and backend systems across media and finance. Currently at Disney via Tavant, combining core data engineering with agentic AI.",
 };
+
+// Prefixes public assets with the Pages basePath when exporting
+// (https://github.com/sai-guntupalli serves under /sai-guntupalli).
+export function assetPath(path: string): string {
+  return (process.env.NEXT_PUBLIC_BASE_PATH || "") + path;
+}
+
+export type Certification = {
+  name: string;
+  issuer: string;
+  href: string;
+  badge: string;
+};
+
+export const certifications: Certification[] = [
+  {
+    name: "Generative AI LLMs - Associate",
+    issuer: "NVIDIA",
+    href: "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/",
+    badge: "/certifications/nvidia.svg",
+  },
+  {
+    name: "Professional Data Engineer",
+    issuer: "Google Cloud",
+    href: "https://cloud.google.com/learn/certification/data-engineer",
+    badge: "/certifications/googlecloud.svg",
+  },
+  {
+    name: "Certified Data Engineer Associate",
+    issuer: "Databricks",
+    href: "https://www.databricks.com/learn/certification/data-engineer-associate",
+    badge: "/certifications/databricks.svg",
+  },
+];
 
 export type Experience = {
   company: string;

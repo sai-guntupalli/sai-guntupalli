@@ -24,7 +24,7 @@ export function Projects() {
               className={i === 0 ? "md:col-span-2" : undefined}
             >
               <article
-                className={`project-card ${
+                className={`project-card flex h-full flex-col p-7 ${
                   i === 0 ? "project-card--featured" : ""
                 }`}
               >

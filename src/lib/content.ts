@@ -45,10 +45,10 @@ export const certifications: Certification[] = [
     badge: "/certifications/claude-architect.png",
   },
   {
-    name: "Generative AI LLMs - Associate",
+    name: "NVIDIA-Certified Associate: Generative AI LLMs",
     issuer: "NVIDIA",
-    href: "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/",
-    badge: "/certifications/nvidia.svg",
+    href: "https://www.credly.com/badges/6a2250d1-9de4-42a9-bd1b-875d6b510606",
+    badge: "/certifications/nvidia-badge.png",
   },
   {
     name: "Professional Data Engineer",

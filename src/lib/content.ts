@@ -6,7 +6,9 @@ export const site = {
   location: "Edison, New Jersey",
   github: "https://github.com/sai-guntupalli",
   linkedin: "https://www.linkedin.com/in/sai-sri-vatsava-guntupalli/",
-  resume: "/sai-guntupalli-resume.pdf",
+  // Prefixed with basePath when exporting for GitHub Pages project hosting.
+  resume:
+    (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/sai-guntupalli-resume.pdf",
   role: "Senior Data Engineer & Python Developer",
   shortBio:
     "Ten years building data pipelines across media and finance, now pairing Snowflake and AWS with agentic AI at Disney.",

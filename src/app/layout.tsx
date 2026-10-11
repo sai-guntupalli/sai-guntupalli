@@ -15,15 +15,23 @@ const body = Figtree({
   variable: "--font-body",
 });
 
+// When exporting for GitHub Pages project hosting, URLs and assets live
+// under /<repo-name>; otherwise the custom domain serves from root.
+const isPagesExport = process.env.EXPORT === "1";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const siteUrl = isPagesExport
+  ? `https://sai-guntupalli.github.io/sai-guntupalli/`
+  : "https://saiguntupalli.com";
+
 export const metadata: Metadata = {
   title: {
     default: `${site.name}, ${site.role}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
-  metadataBase: new URL("https://saiguntupalli.com"),
+  metadataBase: new URL(siteUrl),
   icons: {
-    icon: "/favicon.svg",
+    icon: basePath ? `${basePath}/favicon.svg` : "/favicon.svg",
   },
   openGraph: {
     title: `${site.name}, ${site.role}`,

@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ============================================================
+       SITE CONFIG — single place to edit site-wide values
+       LinkedIn profile URL (applied to the hero button, the footer link,
+       and any element with data-link="linkedin").
+       ============================================================ -->
+    <script>
+      window.SITE_CONFIG = {
+        linkedinUrl: "https://www.linkedin.com/in/sai-sri-vatsava-guntupalli",
+      };
+    </script>
+
+    <title>Sai Guntupalli — Senior Data Engineer</title>
+    <meta
+      name="description"
+      content="Sai Guntupalli is a Senior Data Engineer with 10 years of experience building scalable data platforms, distributed pipelines, and AI-enabled engineering tooling."
+    />
+    <!-- theme-color is kept in sync by the theme script below -->
+    <meta name="theme-color" content="#f7f8fb" />
+
+    <!-- Theme. Runs before the stylesheet so a saved choice never flashes the
+         wrong palette. Must stay above the <link rel="stylesheet"> tags. -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+        function saved() {
+          try {
+            var v = localStorage.getItem("theme");
+            return v === "light" || v === "dark" ? v : null;
+          } catch (e) {
+            return null;
+          }
+        }
+
+        function apply(theme) {
+          root.dataset.theme = theme;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.content = theme === "dark" ? "#0e1117" : "#f7f8fb";
+        }
+
+        apply(saved() || (mq.matches ? "dark" : "light"));
+
+        // With no saved choice the site keeps following the OS setting.
+        mq.addEventListener("change", function (event) {
+          if (!saved()) apply(event.matches ? "dark" : "light");
+        });
+      })();
+    </script>
+
+    <!-- Open Graph (og:url / og:image TODO once the final GitHub Pages URL is known) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sai Guntupalli — Senior Data Engineer" />
+    <meta
+      property="og:description"
+      content="Senior Data Engineer with 10 years building scalable data platforms, distributed pipelines, and AI-enabled engineering tooling. Python, PySpark, AWS, Snowflake, Databricks."
+    />
+
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+    <link rel="apple-touch-icon" href="public/favicon.svg" />
+
+    <!-- Fonts: Inter (body) + Manrope (headings), non-blocking with display=swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body id="top">
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <!-- ================= HEADER / NAV ================= -->
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-brand" href="#top">
+          <span class="nav-monogram" aria-hidden="true">SG</span>
+          <span class="nav-name">Sai Guntupalli</span>
+        </a>
+        <div class="nav-end">
+          <ul class="nav-links" id="site-nav" data-nav-links>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#tools">Tools &amp; Frameworks</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#projects">Projects</a></li>
+          </ul>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            data-nav-toggle
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <svg class="nav-toggle-open" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path
+                d="M3 6.5h18M3 12h18M3 17.5h18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <svg class="nav-toggle-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <!-- Label + icon state are set by js/main.js. -->
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode">
+            <svg
+              class="theme-icon theme-icon--sun"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M18.5 5.5l-1.6 1.6M7.1 16.9l-1.6 1.6" />
+            </svg>
+            <svg
+              class="theme-icon theme-icon--moon"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content">
+      <!-- ================= 3.1 DETAILS / HERO ================= -->
+      <section class="hero section" id="about" aria-labelledby="hero-name">
+        <div class="container hero-grid">
+          <figure class="hero-photo">
+            <!-- Photo: replace public/images/profile.jpeg to update.
+                 640px = 2x the largest CSS display size (320px), so it stays
+                 sharp on retina screens without shipping a 720px original. -->
+            <img
+              src="public/images/profile.jpeg"
+              alt="Portrait of Sai Guntupalli"
+              width="640"
+              height="640"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </figure>
+          <div class="hero-copy">
+            <p class="hero-eyebrow">Data platforms · practical AI automation</p>
+            <h1 class="hero-name" id="hero-name">Sai Guntupalli</h1>
+            <p class="hero-title">Senior Data Engineer</p>
+            <!-- Bio distilled from the resume's Professional Summary (no facts added). -->
+            <p class="hero-bio">
+              I build scalable data platforms and distributed pipelines across media and financial services.
+              At The Walt Disney Company, I lead engineering work behind marketing models that guide more than
+              $100M in annual spend, while building AI-enabled tooling with Python, PySpark, Airflow, Snowflake,
+              Databricks, and AWS.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="btn btn-secondary"
+                data-link="linkedin"
+                href="https://www.linkedin.com/in/sai-sri-vatsava-guntupalli"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <!-- Same URL as SITE_CONFIG (kept in sync for no-JS visitors). -->
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                  <path
+                    d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56zM8.34 6.86H20.9v1.63H8.34z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
+              <a
+                class="btn btn-primary"
+                href="public/Sai_Guntupalli_Senior_Data_Engineer.pdf"
+                download="Sai_Guntupalli_Senior_Data_Engineer.pdf"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 3.5v11M7.5 10L12 14.5 16.5 10M4.5 19.5h15" />
+                </svg>
+                Download Resume
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3.2 EXPERIENCE =================
+         All content below is taken from the resume, concisely distilled.
+         Reverse chronological order. Hover on the latest expands the rest
+         (desktop); tap / keyboard focus also works — see js/main.js.
+         NOTE: Per-company locations are not stated in the resume (TODO if you
+         want them added), so no location is shown on the cards. -->
+      <section class="section" id="experience" aria-labelledby="experience-heading">
+        <div class="container">
+          <h2 class="section-heading" id="experience-heading">Experience</h2>
+
+          <div class="xp-stack">
+            <!-- The newest role carries xp-item--default (expanded on load). -->
+
+            <article class="xp-item xp-item--default" data-xp>
+              <div class="xp-card">
+                <h3 class="xp-heading">
+                  <button
+                    class="xp-toggle"
+                    type="button"
+                    id="xp-disney-btn"
+                    aria-expanded="true"
+                    aria-controls="xp-disney-body"
+                  >
+                    <span class="xp-heading-main">
+                      <span class="xp-company">The Walt Disney Company</span>
+                      <span class="xp-role">Senior Data Engineer</span>
+                    </span>
+                    <span class="xp-heading-side">
+                      <span class="xp-dates">Aug 2022 – Present</span>
+                      <svg
+                        class="xp-chevron"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </button>
+                </h3>
+                <div class="xp-body" id="xp-disney-body" aria-labelledby="xp-disney-btn">
+                  <div class="xp-body-inner">
+                    <ul class="xp-list">
+                      <li>
+                        Lead a team of 8 engineers owning the end-to-end marketing data platform that feeds
+                        econometric models guiding more than $100M in annual marketing spend.
+                      </li>
+                      <li>
+                        Refactored the Event Level Attribution Platform tracking ad-click to subscription
+                        journeys for Disney+ and ESPN+, processing 50–60 million events daily and cutting
+                        typical six-month backfills from about a week to 3–4 hours.
+                      </li>
+                      <li>
+                        Designed the canonical data model for Project Armory, consolidating 20+ legacy notebooks
+                        and 10+ sources into a canonical ESPN marketing data model with built-in error handling
+                        and quality checks across 10+ pipelines.
+                      </li>
+                      <li>
+                        Enhanced a config-driven Python ingestor reading from 6+ input source types and added a
+                        config-driven data-quality framework used across 8+ pipelines.
+                      </li>
+                      <li>
+                        Built AirBoard, a DAG monitoring dashboard with SLA status, alerts, run history, lineage,
+                        and a leadership view covering 100+ DAGs across Acquisition teams.
+                      </li>
+                      <li>
+                        Created shared AI agent skills for migrations, code review, and PR/Jira generation, plus
+                        a Databricks optimizer that analyzes cluster configurations and run logs to recommend tuned settings.
+                      </li>
+                    </ul>
+                    <ul class="tags" aria-label="Technologies">
+                      <li>AWS (Lambda, S3)</li>
+                      <li>Snowflake</li>
+                      <li>Databricks</li>
+                      <li>Apache Airflow</li>
+                      <li>AI engineering tooling</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="xp-item" data-xp>
+              <div class="xp-card">
+                <h3 class="xp-heading">
+                  <button
+                    class="xp-toggle"
+                    type="button"
+                    id="xp-nbcu-btn"
+                    aria-expanded="false"
+                    aria-controls="xp-nbcu-body"
+                  >
+                    <span class="xp-heading-main">
+                      <span class="xp-company">NBCUniversal</span>
+                      <span class="xp-role">Senior Data Engineer</span>
+                    </span>
+                    <span class="xp-heading-side">
+                      <span class="xp-dates">Oct 2021 – July 2022</span>
+                      <svg
+                        class="xp-chevron"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </button>
+                </h3>
+                <div class="xp-body" id="xp-nbcu-body" aria-labelledby="xp-nbcu-btn">
+                  <div class="xp-body-inner">
+                    <ul class="xp-list">
+                      <li>
+                        Worked on Total Audience Measurement (TAMI), a tool tracking viewing consumption
+                        across demographics and genres; optimized Spark pipelines with Python, improving
+                        processing speeds by 70%.
+                      </li>
+                      <li>
+                        Automated manual workflows with serverless AWS Lambda functions orchestrated through
+                        AWS Step Functions.
+                      </li>
+                      <li>
+                        Re-engineered the RevDash pipelines, cutting execution time from 12 hours to 3,
+                        migrated to Spark 3, and converted complex business logic to Spark Scala to meet
+                        high-throughput demands.
+                      </li>
+                    </ul>
+                    <ul class="tags" aria-label="Technologies">
+                      <li>Spark</li>
+                      <li>Scala</li>
+                      <li>Python</li>
+                      <li>AWS Lambda</li>
+                      <li>Step Functions</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="xp-item" data-xp>
+              <div class="xp-card">
+                <h3 class="xp-heading">
+                  <button
+                    class="xp-toggle"
+                    type="button"
+                    id="xp-experian-de-btn"
+                    aria-expanded="false"
+                    aria-controls="xp-experian-de-body"
+                  >
+                    <span class="xp-heading-main">
+                      <span class="xp-company">Experian</span>
+                      <span class="xp-role">Data Engineer</span>
+                    </span>
+                    <span class="xp-heading-side">
+                      <span class="xp-dates">Jan 2019 – Sept 2021</span>
+                      <svg
+                        class="xp-chevron"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </button>
+                </h3>
+                <div class="xp-body" id="xp-experian-de-body" aria-labelledby="xp-experian-de-btn">
+                  <div class="xp-body-inner">
+                    <ul class="xp-list">
+                      <li>
+                        Built data pipelines for USAA Bank to process credit bureau data and determine
+                        customer eligibility for financial products.
+                      </li>
+                      <li>
+                        Used Apache Airflow to schedule and manage Spark jobs, ensuring consistent delivery
+                        for analytical modeling.
+                      </li>
+                      <li>
+                        Wrote Python and Shell scripts to automate cluster monitoring and data validation,
+                        reducing manual oversight by 25%; optimized feature engineering pipelines with data
+                        scientists.
+                      </li>
+                    </ul>
+                    <ul class="tags" aria-label="Technologies">
+                      <li>Python</li>
+                      <li>Apache Airflow</li>
+                      <li>Spark</li>
+                      <li>Shell</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="xp-item" data-xp>
+              <div class="xp-card">
+                <h3 class="xp-heading">
+                  <button
+                    class="xp-toggle"
+                    type="button"
+                    id="xp-twitch-btn"
+                    aria-expanded="false"
+                    aria-controls="xp-twitch-body"
+                  >
+                    <span class="xp-heading-main">
+                      <span class="xp-company">Twitch</span>
+                      <span class="xp-role">Data Engineer</span>
+                    </span>
+                    <span class="xp-heading-side">
+                      <span class="xp-dates">July 2018 – Dec 2018</span>
+                      <svg
+                        class="xp-chevron"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </button>
+                </h3>
+                <div class="xp-body" id="xp-twitch-body" aria-labelledby="xp-twitch-btn">
+                  <div class="xp-body-inner">
+                    <ul class="xp-list">
+                      <li>
+                        Developed a real-time alerting system monitoring streaming data and engagement
+                        metrics.
+                      </li>
+                      <li>
+                        Processed high-velocity data streams with low latency using Apache Flink and AWS
+                        Kinesis.
+                      </li>
+                      <li>
+                        Built Python-based AWS Lambda functions that notified Slack and email the moment data
+                        thresholds were breached.
+                      </li>
+                    </ul>
+                    <ul class="tags" aria-label="Technologies">
+                      <li>Apache Flink</li>
+                      <li>AWS Kinesis</li>
+                      <li>AWS Lambda</li>
+                      <li>Python</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="xp-item" data-xp>
+              <div class="xp-card">
+                <h3 class="xp-heading">
+                  <button
+                    class="xp-toggle"
+                    type="button"
+                    id="xp-experian-swe-btn"
+                    aria-expanded="false"
+                    aria-controls="xp-experian-swe-body"
+                  >
+                    <span class="xp-heading-main">
+                      <span class="xp-company">Experian</span>
+                      <span class="xp-role">Software Engineer</span>
+                    </span>
+                    <span class="xp-heading-side">
+                      <span class="xp-dates">May 2017 – June 2018</span>
+                      <svg
+                        class="xp-chevron"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </button>
+                </h3>
+                <div class="xp-body" id="xp-experian-swe-body" aria-labelledby="xp-experian-swe-btn">
+                  <div class="xp-body-inner">
+                    <ul class="xp-list">
+                      <li>
+                        Built backend services in Java on the CrossCore integration platform, connecting
+                        third-party fraud detection services.
+                      </li>
+                      <li>
+                        Managed data mapping between systems using XML and JSON, with clean, tested code and
+                        regular peer code reviews to keep the platform stable.
+                      </li>
+                    </ul>
+                    <ul class="tags" aria-label="Technologies">
+                      <li>Java</li>
+                      <li>XML</li>
+                      <li>JSON</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="xp-item" data-xp>
+              <div class="xp-card">
+                <h3 class="xp-heading">
+                  <button
+                    class="xp-toggle"
+                    type="button"
+                    id="xp-tavant-btn"
+                    aria-expanded="false"
+                    aria-controls="xp-tavant-body"
+                  >
+                    <span class="xp-heading-main">
+                      <span class="xp-company">Tavant</span>
+                      <span class="xp-role">Project Trainee</span>
+                    </span>
+                    <span class="xp-heading-side">
+                      <span class="xp-dates">Oct 2016 – Apr 2017</span>
+                      <svg
+                        class="xp-chevron"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </button>
+                </h3>
+                <div class="xp-body" id="xp-tavant-body" aria-labelledby="xp-tavant-btn">
+                  <div class="xp-body-inner">
+                    <ul class="xp-list">
+                      <li>
+                        Completed a rigorous training program focused on Python, Java, and the Hadoop
+                        ecosystem (Hive, Sqoop, Spark).
+                      </li>
+                      <li>
+                        Worked on simulated real-world projects covering data ingestion and transformation.
+                      </li>
+                    </ul>
+                    <ul class="tags" aria-label="Technologies">
+                      <li>Python</li>
+                      <li>Java</li>
+                      <li>Hadoop</li>
+                      <li>Spark</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3.3 TOOLS & FRAMEWORKS =================
+         Labels are verbatim from the resume's Technical Skills line.
+         Icons are local SVGs in public/icons; chips without a brand mark
+         use neutral custom glyphs. Each carries its own official brand colour
+         in the file — an <img> can't inherit currentColor, so re-tint in the
+         files, not in CSS (see README). Icon images are decorative (the label
+         gives the accessible name).
+
+         Layout: one panel, one row per category — the category name sits in
+         a fixed left column and its tiles wrap beside it. Categories hold
+         anywhere from 2 to 8 tools, so per-category cards used to leave large
+         empty areas; uniform rows make every category look deliberate.
+         Add or remove a category by copying a whole <div class="tool-row">. -->
+      <section class="section section-alt" id="tools" aria-labelledby="tools-heading">
+        <div class="container">
+          <h2 class="section-heading" id="tools-heading">Tools &amp; Frameworks</h2>
+          <div class="tools-matrix">
+            <div class="tool-row">
+              <h3 class="tool-group-title">Languages</h3>
+              <ul class="tiles">
+                <li class="tile">
+                  <img src="public/icons/python.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Python</span
+                  >
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/sql-database.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>SQL</span>
+                </li>
+                <li class="tile">
+                  <img src="public/icons/scala.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Scala</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/openjdk.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Java</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/shell.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Shell</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="tool-row">
+              <h3 class="tool-group-title">AI &amp; Automation</h3>
+              <ul class="tiles">
+                <li class="tile">
+                  <img src="public/icons/langchain.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >LangChain</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/langgraph.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >LangGraph</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/anthropic.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Claude</span
+                  >
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/githubcopilot.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>GitHub Copilot</span>
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/amazonwebservices.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>AWS Bedrock</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tool-row">
+              <h3 class="tool-group-title">Big Data &amp; Streaming</h3>
+              <ul class="tiles">
+                <li class="tile">
+                  <img src="public/icons/apachespark.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >PySpark</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/apachekafka.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Kafka</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/apacheflink.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Flink</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="tool-row">
+              <h3 class="tool-group-title">Orchestration &amp; Pipelines</h3>
+              <ul class="tiles">
+                <li class="tile">
+                  <img
+                    src="public/icons/apacheairflow.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>Apache Airflow</span>
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/amazonwebservices.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>AWS Step Functions</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tool-row">
+              <h3 class="tool-group-title">Cloud &amp; Storage</h3>
+              <ul class="tiles">
+                <li class="tile">
+                  <img
+                    src="public/icons/amazonwebservices.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>Amazon S3</span>
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/amazonwebservices.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>AWS Lambda</span>
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/amazonwebservices.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>Amazon EMR</span>
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/amazonwebservices.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>Amazon Kinesis</span>
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/amazonwebservices.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>AWS Glue</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tool-row">
+              <h3 class="tool-group-title">Lakehouse &amp; Warehousing</h3>
+              <ul class="tiles">
+                <li class="tile">
+                  <img src="public/icons/snowflake.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Snowflake</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/databricks.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Databricks</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="tool-row">
+              <h3 class="tool-group-title">DevOps &amp; CI/CD</h3>
+              <ul class="tiles">
+                <li class="tile">
+                  <img src="public/icons/docker.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Docker</span
+                  >
+                </li>
+                <li class="tile">
+                  <img src="public/icons/jenkins.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Jenkins</span
+                  >
+                </li>
+                <li class="tile">
+                  <img
+                    src="public/icons/githubactions.svg"
+                    alt=""
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                  /><span>GitHub Actions</span>
+                </li>
+                <li class="tile">
+                  <img src="public/icons/terraform.svg" alt="" width="32" height="32" loading="lazy" /><span
+                    >Terraform</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3.4 CERTIFICATIONS =================
+         Names and URLs are verbatim as provided. Each card is one link. -->
+      <section class="section" id="certifications" aria-labelledby="certifications-heading">
+        <div class="container">
+          <h2 class="section-heading" id="certifications-heading">Certifications</h2>
+          <ul class="cert-grid">
+            <li>
+              <a
+                class="cert card"
+                href="https://www.credly.com/badges/a7f2d454-3420-4294-8284-c5e993620cc6/linked_in_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="cert-icon"
+                  ><img
+                    src="public/icons/anthropic.svg"
+                    alt="Anthropic logo"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                /></span>
+                <span class="cert-issuer">Anthropic</span>
+                <h3 class="cert-name">Claude Certified Architect - Foundations</h3>
+                <span class="cert-cta"
+                  >View credential
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="cert card"
+                href="https://www.credly.com/badges/6a2250d1-9de4-42a9-bd1b-875d6b510606/linked_in_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="cert-icon"
+                  ><img src="public/icons/nvidia.svg" alt="NVIDIA logo" width="32" height="32" loading="lazy"
+                /></span>
+                <span class="cert-issuer">NVIDIA</span>
+                <h3 class="cert-name">NVIDIA-Certified Associate: Generative AI LLMs</h3>
+                <span class="cert-cta"
+                  >View credential
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="cert card"
+                href="https://www.credly.com/badges/9928e911-e43b-46ba-b515-30bf690482cf/linked_in_profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="cert-icon"
+                  ><img
+                    src="public/icons/googlecloud.svg"
+                    alt="Google Cloud logo"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                /></span>
+                <span class="cert-issuer">Google Cloud</span>
+                <h3 class="cert-name">Professional Data Engineer Certification</h3>
+                <span class="cert-cta"
+                  >View credential
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="cert card"
+                href="https://credentials.databricks.com/5baa7fc3-9464-418f-96c9-b88c1e663d01#acc.M9yCIHLQ"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="cert-icon"
+                  ><img
+                    src="public/icons/databricks.svg"
+                    alt="Databricks logo"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                /></span>
+                <span class="cert-issuer">Databricks</span>
+                <h3 class="cert-name">Databricks Certified Data Engineer Associate</h3>
+                <span class="cert-cta"
+                  >View credential
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= 3.5 PERSONAL PROJECTS =================
+         ===== DATA MODEL — how to edit your projects without touching layout =====
+         Each project is one <li class="project"> card inside this list:
+
+             <li class="project card">
+               <div class="project-top">
+                 <h3 class="project-name">Project title</h3>
+                 <span class="project-badge">Status text (optional — delete if unneeded)</span>
+               </div>
+               <p class="project-desc">Two or three lines of description.</p>
+               <ul class="tags" aria-label="Technologies">
+                 <li>Tag one</li><li>Tag two</li>
+               </ul>
+               <div class="project-actions">
+                 <a class="text-btn" href="GITHUB_URL" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                 <a class="text-btn" href="DEMO_URL"  target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+               </div>
+             </li>
+
+         NOTE: This card is a published project. Add another card only when its
+         details and public link are ready.
+    -->
+      <section class="section section-alt" id="projects" aria-labelledby="projects-heading">
+        <div class="container">
+          <h2 class="section-heading" id="projects-heading">Personal Projects</h2>
+          <ul class="project-grid">
+            <!-- REAL: https://github.com/sai-guntupalli/data-engineering-handbook
+                 (repo private — the public gallery link below is live at the
+                 github.io URL; a repo link would 404 for visitors). -->
+            <li class="project card">
+              <div class="project-top">
+                <h3 class="project-name">Data Engineering Handbook</h3>
+                <span class="project-badge">CC BY 4.0</span>
+              </div>
+              <p class="project-desc">
+                A handbook of 59 runnable Jupyter notebooks — five hands-on practice sets and 54
+                topics — covering Python, SQL, PySpark, lakehouse formats, streaming, warehouses,
+                and cloud platforms. Paired with a searchable Next.js gallery on GitHub Pages with
+                Open&#8209;in&#8209;Colab buttons, and CI that audits and executes every notebook on each push.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li>
+                <li>SQL</li>
+                <li>PySpark</li>
+                <li>Jupyter</li>
+                <li>Next.js</li>
+                <li>TypeScript</li>
+                <li>GitHub Pages</li>
+              </ul>
+              <div class="project-actions">
+                <a
+                  class="text-btn"
+                  href="https://sai-guntupalli.github.io/data-engineering-handbook/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Open gallery</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= 3.6 FOOTER ================= -->
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <p>&copy; <span data-year>2025</span> Sai Guntupalli</p>
+        <a
+          class="text-btn"
+          data-link="linkedin"
+          href="https://www.linkedin.com/in/sai-sri-vatsava-guntupalli"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <!-- Same URL as SITE_CONFIG (kept in sync for no-JS visitors). -->
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor">
+            <path
+              d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56zM8.34 6.86H20.9v1.63H8.34z"
+            />
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+
+    <!-- Without JS: keep every experience expanded, show the nav links, and
+         hide the theme toggle (it needs JS; the media query still themes). -->
+    <noscript>
+      <style>
+        .xp-body {
+          grid-template-rows: 1fr !important;
+          opacity: 1 !important;
+        }
+        .xp-chevron {
+          display: none;
+        }
+        .theme-toggle {
+          display: none;
+        }
+        @media (max-width: 719px) {
+          .nav-toggle {
+            display: none;
+          }
+          .nav-links {
+            display: flex !important;
+          }
+        }
+      </style>
+    </noscript>
+  </body>
+</html>

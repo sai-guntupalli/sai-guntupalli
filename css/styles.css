@@ -1,0 +1,975 @@
+/* ==========================================================================
+   Sai Guntupalli — portfolio styles
+   Layout: mobile-first, single stylesheet. All colors/spacing/fonts are CSS
+   custom properties so theming is a one-place change.
+   Light mode is the default; dark mode follows prefers-color-scheme.
+   ========================================================================== */
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Light is the default palette; dark lives in the two blocks below.
+     color-scheme drives native UI (scrollbars, form controls, selection) so
+     they match the palette the visitor is actually seeing. */
+  color-scheme: light;
+
+  /* Color — light */
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --surface-2: #f1f3f8;
+  --surface-icon: #eef0f7;
+  /* See the note on --surface-icon in the dark blocks: icon plates stay light
+     in both themes because the SVG files are pre-tinted with --accent. */
+  --text: #1c2333;
+  --muted: #576072;
+  --border: #e4e7ef;
+  --accent: #3b5bdb;
+  --accent-strong: #2f4bc4;
+  --accent-soft: #e9edfb;
+  /* Filled surfaces that carry WHITE text. In dark mode --accent is a light
+     periwinkle tuned for text-on-dark, so it is far too pale behind white
+     (2.27:1). These tokens stay dark enough for white text in both themes. */
+  --accent-fill: #3b5bdb;
+  --accent-fill-strong: #2f4bc4;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-md: 0 1px 2px rgba(16, 24, 40, 0.05), 0 10px 28px rgba(16, 24, 40, 0.07);
+
+  /* Typography */
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Manrope", var(--font-body);
+  --fs-100: 0.8125rem;
+  --fs-200: 0.9375rem;
+  --fs-300: 1rem;
+  --fs-400: 1.125rem;
+
+  /* Spacing & shape */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-section: clamp(2.25rem, 5vw, 3.5rem);
+  --radius-sm: 8px;
+  --radius: 12px;
+  --container: 1080px;
+  --nav-h: 64px;
+  --xp-gap: 10px; /* contiguous hover hit-area gap between experience cards */
+
+  /* Motion */
+  --ease: 200ms ease;
+}
+
+/* Dark palette. Written twice on purpose: once for an explicit choice made
+   with the theme toggle, and once inside the media query so visitors without
+   JS still get their OS preference. KEEP THE TWO TOKEN LISTS IDENTICAL. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e1117;
+  --surface: #161a23;
+  --surface-2: #1d2230;
+  /* Icon plates stay light in dark mode. The SVGs in public/icons carry their
+     own brand colours, several of which (Kafka, AWS, Copilot) are near-black,
+     so the plate must stay light for them to read in either theme. */
+  --surface-icon: #e9ebf3;
+  --text: #e8ebf2;
+  --muted: #98a1b3;
+  --border: #272d3c;
+  --accent: #96a7fd;
+  --accent-strong: #aab8ff;
+  --accent-soft: #232a41;
+  /* Kept dark for white text: 5.2:1 and 6.2:1 respectively. */
+  --accent-fill: #4a63d8;
+  --accent-fill-strong: #3f56c9;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.28), 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* :not([data-theme="light"]) lets an explicit light choice win over a dark OS. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0e1117;
+    --surface: #161a23;
+    --surface-2: #1d2230;
+    --surface-icon: #e9ebf3;
+    --text: #e8ebf2;
+    --muted: #98a1b3;
+    --border: #272d3c;
+    --accent: #96a7fd;
+    --accent-strong: #aab8ff;
+    --accent-soft: #232a41;
+    --accent-fill: #4a63d8;
+    --accent-fill-strong: #3f56c9;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.28), 0 10px 28px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-300);
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--accent);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.section {
+  padding-block: var(--space-section);
+  scroll-margin-top: calc(var(--nav-h) + 8px);
+}
+
+.section-alt {
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--surface-2) 55%, var(--bg)), var(--bg));
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.section-heading {
+  font-size: clamp(1.5rem, 3.2vw, 1.9rem);
+  font-weight: 800;
+  margin-bottom: var(--space-5);
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--accent-fill);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+/* Right-hand cluster: nav links, then the menu button and theme toggle.
+   Deliberately unpositioned so .nav-links (absolute on mobile) keeps
+   resolving its containing block to .site-header. */
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nav-monogram {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-fill);
+  color: #fff;
+  font-size: var(--fs-100);
+  font-weight: 800;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2.5vw, 1.75rem);
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: var(--fs-200);
+  font-weight: 500;
+  text-decoration: none;
+  padding: var(--space-2) 0;
+  transition: color var(--ease);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-toggle {
+  display: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  place-items: center;
+}
+
+.nav-toggle .nav-toggle-close {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-open {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-close {
+  display: block;
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: color var(--ease), border-color var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Show the icon for the theme you would switch TO: moon while light, sun
+   while dark. Always in step because the head script sets data-theme. */
+.theme-icon--sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon--sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon--moon {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .nav-toggle {
+    display: grid;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2) clamp(1rem, 4vw, 2rem) var(--space-4);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-header[data-nav-open="true"] .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: var(--space-3) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-300);
+  }
+
+  .nav-links a:hover {
+    background: var(--surface-2);
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.7rem 1.15rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--fs-200);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--ease), border-color var(--ease),
+    color var(--ease), box-shadow var(--ease), transform var(--ease);
+}
+
+.btn-primary {
+  background: var(--accent-fill);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--accent-fill-strong);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Small inline text buttons (footer / project links) */
+.text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: var(--fs-200);
+  font-weight: 600;
+  text-decoration: none;
+  padding: var(--space-1) 0;
+  transition: color var(--ease);
+}
+
+.text-btn:hover {
+  color: var(--accent-strong);
+}
+
+/* ---------- 3.1 Hero ---------- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 4rem);
+  /* No extra padding here: the hero is a .section, so its own padding would
+     stack on top of the section rhythm and double the gap into Experience. */
+}
+
+.hero-photo {
+  order: 2;
+}
+
+.hero-photo img {
+  width: clamp(170px, 24vw, 320px);
+  height: clamp(170px, 24vw, 320px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--surface);
+  box-shadow: var(--shadow-md), 0 0 0 1px var(--border);
+}
+
+.hero-copy {
+  order: 1;
+  max-width: 640px;
+}
+
+.hero-eyebrow {
+  font-size: var(--fs-100);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+
+.hero-name {
+  font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero-title {
+  margin-top: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hero-bio {
+  margin-top: var(--space-4);
+  font-size: var(--fs-400);
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.hero-actions {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (max-width: 719px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo {
+    order: 0;
+    justify-self: center;
+  }
+}
+
+/* ---------- Cards (shared) ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- 3.2 Experience ---------- */
+.xp-stack {
+  /* Each item owns a half-gap of padding at its top and bottom, so the
+     boxes touch: hover hit-areas are contiguous and the expand/collapse
+     handoff between neighboring cards has no dead gap (prevents flutter). */
+  --xp-gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-item {
+  padding-block: calc(var(--xp-gap) / 2);
+}
+
+/* Visual card: contains the toggle + content, deliberately separate from
+   the (larger) hover hit-area provided by .xp-item. */
+.xp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.xp-heading {
+  font-size: var(--fs-300);
+}
+
+.xp-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--ease), box-shadow var(--ease);
+}
+
+.xp-toggle:hover {
+  background: var(--surface-2);
+}
+
+.xp-heading-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.xp-company {
+  font-family: var(--font-heading);
+  font-size: var(--fs-400);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.xp-role {
+  color: var(--muted);
+  font-size: var(--fs-200);
+  font-weight: 500;
+}
+
+.xp-heading-side {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.xp-dates {
+  font-size: var(--fs-100);
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  white-space: nowrap;
+}
+
+.xp-chevron {
+  color: var(--muted);
+  transition: transform var(--ease);
+}
+  /* Expand/collapse via grid-template-rows 0fr -> 1fr (no JS height math) */
+.xp-body {
+  /* Expand/collapse via grid-template-rows 0fr -> 1fr (no JS height math) */
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 240ms ease, opacity 200ms ease;
+}
+
+.xp-body-inner {
+  overflow: hidden;
+  min-height: 0;
+  padding-inline: var(--space-5);
+}
+
+.xp-item.open .xp-card {
+  box-shadow: var(--shadow-md);
+}
+
+.xp-item.open .xp-chevron {
+  transform: rotate(180deg);
+}
+
+.xp-item.open .xp-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.xp-item.open .xp-body-inner {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-5);
+}
+
+.xp-item.open .xp-toggle:hover {
+  background: transparent;
+}
+
+.xp-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-inline-start: var(--space-4);
+}
+
+.xp-list li {
+  position: relative;
+  color: var(--muted);
+  font-size: var(--fs-300);
+}
+
+.xp-list li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-4) + 7px);
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  margin-left: var(--space-4);
+}
+
+.tags li {
+  font-size: var(--fs-100);
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+}
+
+@media (max-width: 599px) {
+  .xp-toggle {
+    padding: var(--space-4);
+  }
+
+  .xp-body-inner {
+    padding-inline: var(--space-4);
+  }
+
+  .xp-heading-side {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-2);
+  }
+}
+
+/* ---------- 3.3 Tools & Frameworks ---------- */
+/* One panel with one row per category: the category name sits in a fixed left
+   column and its tiles wrap alongside. Categories range from 2 to 8 tools, so
+   separate cards left large empty regions — even rows absorb that variance. */
+.tools-matrix {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+}
+
+.tool-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.tool-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.tool-row:last-child {
+  padding-bottom: 0;
+}
+
+.tool-group-title {
+  font-size: var(--fs-100);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  /* Centres the label against the 48px height of the first tile row. */
+  padding-top: 0.85rem;
+}
+
+@media (max-width: 719px) {
+  .tools-matrix {
+    padding: var(--space-4);
+  }
+
+  .tool-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .tool-group-title {
+    padding-top: 0;
+  }
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tile {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-200);
+  font-weight: 500;
+  color: var(--text);
+  transition: border-color var(--ease), box-shadow var(--ease), transform var(--ease);
+}
+
+.tile:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* Icons are single-colour SVGs carrying their own brand fill in the file
+   (an <img> can't inherit currentColor), sitting on a plate that stays light
+   in both themes — see the --surface-icon note in the dark blocks. */
+.tile img {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  padding: 3px;
+  border-radius: 7px;
+  background: var(--surface-icon);
+  border: 1px solid var(--border);
+}
+
+/* ---------- 3.4 Certifications ---------- */
+.cert-grid {
+  display: grid;
+  /* Explicit steps instead of auto-fit: with four credentials, auto-fit always
+     leaves an orphan (3 + 1) at some width. These keep the grid balanced —
+     1 column, 2×2, then one row of four. */
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 480px) {
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cert-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cert {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-5);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color var(--ease), box-shadow var(--ease), transform var(--ease);
+}
+
+.cert:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.cert-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-icon);
+  border: 1px solid var(--border);
+  margin-bottom: var(--space-4);
+}
+
+.cert-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.cert-issuer {
+  font-size: var(--fs-100);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-1);
+}
+
+.cert-name {
+  font-size: var(--fs-400);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.cert-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  font-size: var(--fs-200);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ---------- 3.5 Personal Projects ---------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-4);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-5);
+}
+
+.project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.project-name {
+  font-size: var(--fs-400);
+  font-weight: 700;
+  max-width: 30ch;
+}
+
+.project-badge {
+  flex-shrink: 0;
+  font-size: var(--fs-100);
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+}
+
+.project-desc {
+  color: var(--muted);
+  font-size: var(--fs-200);
+}
+
+/* Card action row lives in the data-model template above; keep spacing sane */
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: auto;
+}
+
+/* ---------- 3.6 Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-5);
+}
+
+.site-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  color: var(--muted);
+  font-size: var(--fs-200);
+}
+
+@media (max-width: 479px) {
+  .site-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

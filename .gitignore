@@ -1,0 +1,11 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Local review scratch (before/after screenshots + original photo backup).
+# Must stay untracked: the Pages workflow uploads the whole repo root.
+.review/

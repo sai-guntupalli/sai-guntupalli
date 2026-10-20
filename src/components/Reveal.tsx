@@ -1,0 +1,31 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+import type { ReactNode } from "react";
+
+type RevealProps = {
+  children: ReactNode;
+  /** Seconds of extra delay for stagger sequencing. */
+  delay?: number;
+  className?: string;
+};
+
+/**
+ * Scroll-reveal wrapper. Collapses to a static div when the visitor
+ * prefers reduced motion.
+ */
+export function Reveal({ children, delay = 0, className }: RevealProps) {
+  const reduce = useReducedMotion();
+
+  return (
+    <motion.div
+      className={className}
+      initial={reduce ? false : { opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}

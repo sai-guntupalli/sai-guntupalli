@@ -1016,6 +1016,41 @@
         <div class="container">
           <h2 class="section-heading" id="projects-heading">Personal Projects</h2>
           <ul class="project-grid">
+            <li class="project card">
+              <div class="project-top">
+                <h3 class="project-name">TAG — Tavant on-call Agent</h3>
+                <span class="project-badge">AI SRE</span>
+              </div>
+              <p class="project-desc">
+                An AI SRE control plane for automated incident triage and guarded remediation.
+                TAG receives alerts through configurable pipeline webhooks, recalls similar
+                incidents from Neo4j, sends investigations to a pluggable engine such as
+                HolmesGPT, and records the full investigation in Postgres for review in the
+                operator control center. Remediation is constrained by pipeline-specific
+                allowlists, so automation can act without turning incident response into an
+                unchecked retry loop.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li>
+                <li>FastAPI</li>
+                <li>Neo4j</li>
+                <li>Postgres</li>
+                <li>Airflow</li>
+                <li>HolmesGPT</li>
+                <li>Docker</li>
+                <li>TypeScript</li>
+              </ul>
+              <div class="project-actions">
+                <a
+                  class="text-btn"
+                  href="https://github.com/sai-guntupalli/tag"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View on GitHub</a
+                >
+              </div>
+            </li>
+
             <!-- REAL: https://github.com/sai-guntupalli/data-engineering-handbook
                  (repo private — the public gallery link below is live at the
                  github.io URL; a repo link would 404 for visitors). -->
